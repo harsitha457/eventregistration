@@ -1,20 +1,89 @@
-<ion-header [translucent]="true">
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Event Registration</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen] = "true">
+  <form #f="ngForm" novalidate (ngSubmit)="onSubmit(f)">
+    <ion-item lines="full">
+      <ion-label position="floating">Name</ion-label>
+      <ion-input type="text" required  name ="name" [(ngModel)]="data.Name" #nameCtrl="ngModel" Name></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!nameCtrl.valid && nameCtrl.touched">
+      <ion-text color="danger">Name is required</ion-text>
+    </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-item lines="full">
+      <ion-label position="floating">phone number</ion-label>
+      <ion-input  type="number" name="phone" pattern="^((\\+91-?)|0)?[0-9]{10}$" required [(ngModel)]="data.phone" #phone="ngModel" phone></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!phone.valid && phone.touched">
+      <ion-text color="danger">Phone is not valid</ion-text>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" name="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required [(ngModel)]="data.email" #emailCtrl="ngModel" email></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched ">
+      <ion-text color="danger">Email is not valid</ion-text>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Profession</ion-label>
+      <ion-select type="string"[(ngModel)]="data.profession" #jobCtrl="ngModel" name="profession" required>
+        <ion-select-option value="Student">Student</ion-select-option>
+        <ion-select-option value="Working">Working</ion-select-option>
+        <ion-select-option value="Business">Business</ion-select-option>
+        <ion-select-option value="Unemployed">Unemployed</ion-select-option>
+      <ion-input type="text" name ="profession" required [(ngModel)]= "profession"></ion-input>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">City</ion-label>
+      <ion-input type="string"[(ngModel)]="data.city" #cityCtrl="ngModel" name="city" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Gender</ion-label>
+      <ion-select type="string"[(ngModel)]="data.gender" #genderCtrl="ngModel" name="gender" required>
+        <ion-select-option value="Female">Female</ion-select-option>
+        <ion-select-option value="Male">Male</ion-select-option>
+      <ion-input type="text" name ="gender" required [(ngModel)]= "gender"></ion-input>
+      </ion-select>
+    </ion-item>
+    <!--ion-item lines="full">
+      <ion-label position="floating" >Gender</ion-label>
+      <br>
+      <ion-select name = "gender">
+      <ion-select-option *ngFor="let g of gender">
+        {{g}}
+      </ion-select-option>
+      <ion-input type="text" name ="profess" required [(ngModel)]= "gender"></ion-input>
+      </ion-select>
+    </ion-item!-->
+
+    <ion-item>
+      <ion-label>Agree to terms and conditions</ion-label>
+      <ion-toggle   [(ngModel)]="data.tos" name="tos" type="button" required (click)="noSubmit($event)"></ion-toggle>
+    </ion-item>
+    <!--ion-item [hidden]="(!isSubmitted)" class="note danger">
+      <ion-text color="danger">Please check Agree</ion-text>
+    </ion-item!-->
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block" [disabled]="!f.form.valid">Sign Up</ion-button>
+        <ion-button class="btn btn-secondary" type="reset" expand="block">Cancel</ion-button>
+
+      </ion-col>
+    </ion-row>
+  </form>
+  <!--ion-button href="/eventinfo"></ion-button!-->
+  <ion-button (click)="go()">go</ion-button>
 </ion-content>

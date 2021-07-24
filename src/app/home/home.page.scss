@@ -25,3 +25,23 @@
 #container a {
   text-decoration: none;
 }
+ion-title {
+  color: rgb(0, 23, 128);
+  font-size: 30px;
+}
+/** For form invalid field for Ionic Angular*/
+.ion-invalid.ion-touched ion-label {
+  color: var(--ion-color-danger);
+}
+
+/** For form invalid field for Angular*/
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+body{
+  background-color : purple;
+  height: 800px;
+  width: 100%;
+
+  background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.webp')
+}

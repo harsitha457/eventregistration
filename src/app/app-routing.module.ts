@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'eventinfo',
+    loadChildren: () => import('./eventinfo/eventinfo.module').then( m => m.EventinfoPageModule)
+  },
 ];
 
 @NgModule({
