@@ -6,5 +6,4 @@ export class variable05{
   emailid= '';
   cityy= '';
   professionn= '';
-  genderr='';
 }

@@ -33,7 +33,6 @@ export class HomePage {
       email: '',
       phone: '',
       profession: '',
-      gender: '',
       city: ''
     };
     this.finaldata=this.data;
@@ -48,7 +47,6 @@ export class HomePage {
     console.log('onSubmit');
     console.log(f);
   this.isSubmitted = true;
-  this.finaldata.gender = f.value.gender;
   this.finaldata.phone = f.value.phone;
   this.finaldata.profession = f.value.profession;
   this.finaldata.city = f.value.city;
@@ -62,8 +60,7 @@ export class HomePage {
       email: this.data.emailid,
       phone: this.data.phonee,
       city: this.data.cityy,
-      profession: this.data.professionn,
-      gender: this.data.genderr
+      profession: this.data.professionn
      }
     );
     console.log('hiiiiiiiii');
