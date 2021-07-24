@@ -3,6 +3,8 @@ import { resetFakeAsyncZone } from '@angular/core/testing';
 import { NgForm,FormControl,Validators, FormControlName, FormGroup, MinValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { variable05 } from './variable';
 
 @Component({
   selector: 'app-home',
@@ -18,11 +20,13 @@ export class HomePage {
   profession: any;
   gender: any;
   city: any;
+  baseURI = 'https://cloudide.appson.in/workspace/karunya/registration.php';
 
 
   constructor(
     private alertCtrl: AlertController,
     private router: Router,
+    private http: HttpClient,
   ) {
     this.data = {
       name: '',
@@ -41,43 +45,52 @@ export class HomePage {
   //});
   }
   onSubmit(f) {
-  this.isSubmitted = true;
-  if(this.form.valid){
-    console.log('form submitted');
-    this.form.reset();
-  }
     console.log('onSubmit');
     console.log(f);
-    this.presentConfirm();
-    //this.finaldata.gender = f.value.gender;
+  this.isSubmitted = true;
+  this.finaldata.gender = f.value.gender;
+  this.finaldata.phone = f.value.phone;
+  this.finaldata.profession = f.value.profession;
+  this.finaldata.city = f.value.city;
+  this.finaldata.email = f.value.email;
+  this.presentConfirm();
   }
+  sending(){
+    const file=JSON.stringify(
+      {
+      name: this.data.Name,
+      email: this.data.emailid,
+      phone: this.data.phonee,
+      city: this.data.cityy,
+      profession: this.data.professionn,
+      gender: this.data.genderr
+     }
+    );
+    console.log('hiiiiiiiii');
+    console.log(file);
+    alert(file);
+    this.http.post(this.baseURI,file)
+    .subscribe(data1 => {
+     console.log(data1);
+     //alert('working');
+     //this.connect.success(this.data);
+    },
+    err => {
+    console.log('ERROR!: ', err);
+    //alert('NOt Working');
+    //this.connect.notworking(err);
+    //this.hideForm   = true;
+    //this.sendNotification(`Congratulations the technology: ${name} was successfully added`);
+  });
+  }
+
   // eslint-disable-next-line @typescript-eslint/naming-convention
   noSubmit(e: any) {
     e.preventDefault();
   }
-  go()
-  {
-    this.router.navigateByUrl('/eventinfo');
-  }
- // registered(){
-   // this.alertCtrl.create({
-    //  header: 'GREAT!!',
-     // message: 'you have Registered Successfully',
-     // buttons: [
-      //{
-       /// text: 'Okay',
-        //handler: () => {
-         // this.router.navigate(['/home']);
-        //}
-      //}//]
-     //}).then(alertEL => {
-      // alertEL.present();
-     //});
-     //this.presentConfirm();
- // }
   async presentConfirm() {
       const alert =this.alertCtrl.create({
-      header: 'Registeration status',
+      header:  'regsitration status',
       message: 'You have successfully registered the event Thank you!! Have a great day',
       buttons: [
         {
@@ -89,6 +102,23 @@ export class HomePage {
       ]
     });
     (await alert).present();
+    this.sending();
   }
-}
+  //settingform()
+    //{
+     // if(this.form.valid){
+       // console.log('form submitted');
+        //this.form.reset();
+      //}
+      //this.go();
 
+  //}
+    go()
+      {
+    this.router.navigateByUrl('/eventinfo');
+    if(this.form.valid){
+      console.log('form submitted');
+     this.form.reset();
+     }
+    }
+  }
