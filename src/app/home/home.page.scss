@@ -25,9 +25,19 @@
 #container a {
   text-decoration: none;
 }
+
+.item .item-content {
+  background-color: transparent !important;
+}
+ion-item {
+  color: rgb(0, 17, 255);
+  background-color:#5c1919;
+
+}
 ion-title {
-  color: rgb(0, 23, 128);
+  color: rgb(16, 14, 136);
   font-size: 30px;
+  background-color:#ffffff;
 }
 /** For form invalid field for Ionic Angular*/
 .ion-invalid.ion-touched ion-label {
@@ -44,4 +54,8 @@ body{
   width: 100%;
 
   background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.webp')
+
+}
+.center{
+  text-align:center;
 }

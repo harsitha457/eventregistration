@@ -4,9 +4,15 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title> Event Registration</ion-title>
+    <ion-title> Cloud Deployment Webinar</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-item>
+
+
+  <ion-title>Event Registration</ion-title>
+
+</ion-item>
 
 <ion-content [fullscreen] = "true">
   <form #f="ngForm" novalidate (ngSubmit)="onSubmit(f)">
@@ -61,21 +67,18 @@
       </ion-select>
     </ion-item!-->
 
-    <ion-item>
+    <!--ion-item>
       <ion-label>Agree to terms and conditions</ion-label>
       <ion-toggle   [(ngModel)]="data.tos" name="tos" type="button" required (click)="noSubmit($event)"></ion-toggle>
-    </ion-item>
+    </ion-item!-->
     <!--ion-item [hidden]="(!isSubmitted)" class="note danger">
       <ion-text color="danger">Please check Agree</ion-text>
     </ion-item!-->
     <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="danger" expand="block" [disabled]="!f.form.valid">Sign Up</ion-button>
-        <ion-button class="btn btn-secondary" type="reset" expand="block">Cancel</ion-button>
-
-      </ion-col>
+        <ion-button type="submit" color="danger" expand="block" [disabled]="!f.form.valid">Register!</ion-button>
+        <ion-button class="btn btn-secondary" type="reset" expand="block">Reset</ion-button>
     </ion-row>
   </form>
   <!--ion-button href="/eventinfo"></ion-button!-->
-  <ion-button (click)="go()">go</ion-button>
+  <!--ion-button (click)="go()">go</ion-button!-->
 </ion-content>

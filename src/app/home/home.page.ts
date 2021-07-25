@@ -4,7 +4,7 @@ import { NgForm,FormControl,Validators, FormControlName, FormGroup, MinValidator
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
-import { variable05 } from './variable';
+import { ErrorhandlingService } from './errorhandling.service';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +27,7 @@ export class HomePage {
     private alertCtrl: AlertController,
     private router: Router,
     private http: HttpClient,
+    private errorhandling: ErrorhandlingService
   ) {
     this.data = {
       name: '',
@@ -51,7 +52,7 @@ export class HomePage {
   this.finaldata.profession = f.value.profession;
   this.finaldata.city = f.value.city;
   this.finaldata.email = f.value.email;
-  this.presentConfirm();
+ // this.presentConfirm();
   this.sending();
   }
   sending(){
@@ -75,10 +76,7 @@ export class HomePage {
     },
     err => {
     console.log('ERROR!: ', err);
-    //alert('NOt Working');
-    //this.connect.notworking(err);
-    //this.hideForm   = true;
-    //this.sendNotification(`Congratulations the technology: ${name} was successfully added`);
+    this.errorhandling.errorhandle(err);
   });
   }
 
@@ -86,22 +84,21 @@ export class HomePage {
   noSubmit(e: any) {
     e.preventDefault();
   }
-  async presentConfirm() {
-      const alert =this.alertCtrl.create({
-      header:  'regsitration status',
-      message: 'You have successfully registered the event Thank you!! Have a great day',
-      buttons: [
-        {
-          text: 'Done',
-          handler: () => {
-            console.log('ok Clicked');
-          }
-        }
-      ]
-    });
-    (await alert).present();
-    this.sending();
-  }
+  //async presentConfirm() {
+   //  const alert =this.alertCtrl.create({
+     // header:  'regsitration status',
+      //message: 'You have successfully registered the event Thank you!! Have a great day',
+      //buttons: [
+        //{
+         // text: 'Done',
+         //handler: () => {
+          //console.log('ok Clicked');
+          //}
+        //}
+      //]
+    //});
+  //(await alert).present();
+   // }
   //settingform()
     //{
      // if(this.form.valid){
