@@ -52,15 +52,16 @@ export class HomePage {
   this.finaldata.city = f.value.city;
   this.finaldata.email = f.value.email;
   this.presentConfirm();
+  this.sending();
   }
   sending(){
     const file=JSON.stringify(
       {
       name: this.data.Name,
-      email: this.data.emailid,
-      phone: this.data.phonee,
-      city: this.data.cityy,
-      profession: this.data.professionn
+      email: this.data.email,
+      phone: this.data.phone,
+      city: this.data.city,
+      profession: this.data.profession
      }
     );
     console.log('hiiiiiiiii');
