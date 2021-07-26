@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, ViewChild } from '@angular/core';
 import { resetFakeAsyncZone } from '@angular/core/testing';
 import { NgForm,FormControl,Validators, FormControlName, FormGroup, MinValidator } from '@angular/forms';
@@ -58,11 +59,11 @@ export class HomePage {
   sending(){
     const file=JSON.stringify(
       {
-      name: this.data.Name,
-      email: this.data.email,
-      phone: this.data.phone,
-      city: this.data.city,
-      profession: this.data.profession
+      NAME: this.data.Name,
+      EMAIL: this.data.email,
+      PHONE: this.data.phone,
+      CITY:this.data.city,
+      PROFESSION: this.data.profession
      }
     );
     console.log('hiiiiiiiii');
@@ -111,9 +112,7 @@ export class HomePage {
     go()
       {
     this.router.navigateByUrl('/eventinfo');
-    if(this.form.valid){
-      console.log('form submitted');
+    this.isSubmitted=false;
      this.form.reset();
-     }
     }
   }

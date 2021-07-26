@@ -28,7 +28,7 @@
       <ion-label position="floating">phone number</ion-label>
       <ion-input  type="number" name="phone" pattern="^((\\+91-?)|0)?[0-9]{10}$" required [(ngModel)]="data.phone" #phone="ngModel" phone></ion-input>
     </ion-item>
-    <ion-item *ngIf="!phone.valid && phone.touched">
+    <ion-item *ngIf="!phone.valid && phone.touched && phone.errors">
       <ion-text color="danger">Phone is not valid</ion-text>
     </ion-item>
 
